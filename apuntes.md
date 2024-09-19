@@ -21,3 +21,35 @@ javadoc:
 * @see         Image
 */
 ```
+
+## Compilar
+Mirar compilación normal e con jar
+
+ejecutar un jar:
+```
+java -cp target/BasicBithday-1.0-SNAPSHOT.jar org.example.BirthDayStdIn
+```
+
+## Tareas en windows
+### Listar
+```cmd
+tasklist /NH | findstr /I java.exe
+```
+tasklist -> lista as tareas en ejecución
+* /NH -> non mostra as liñas que teñen o nome das columnas dos campos
+
+| -> pasalle a salida do comando ao da dereita
+
+findstr -> encontra o string indicado
+    /I -> non ten en contra minusc ou mayusc
+
+
+### Matar
+```cmd
+taskkill /F /PID idProceso
+taskkill /F /IM nomeProceso
+```
+taskkill -> mata o proceso
+* /F -> forzao
+* /PID -> para indicar o id
+* /IM -> para indicar o nome
