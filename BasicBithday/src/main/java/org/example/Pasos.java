@@ -1,16 +1,21 @@
 package org.example;
 
-import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 public class Pasos {
-    private static Scanner ler;
     public static void main(String[] args){
-        LinkedList<LinkedList<Integer>> valores=new LinkedList<>();
-
         //comprobación numero argumentos
-
+        Integer numeroCasos=null;
+        try{
+            numeroCasos=Integer.parseInt(args[0]);
+        }catch (Exception e){
+            System.out.println("Argumentos inválidos");
+            return;
+        }
+        if (numeroCasos*2!=args.length-1){
+            System.out.println("Número de argumentos introducidos no coincide con el indicado!");
+            return;
+        }
 
         //comprobación tipo de argumentos
         LinkedList<Integer> argsInt=new LinkedList<>();
@@ -19,13 +24,23 @@ public class Pasos {
                 argsInt.add(Integer.parseInt(arg));
             }catch(Exception e){
                 System.out.println("Todos los argumentos deben ser enteros");
+                return;
             }
         }
-        Integer numeroCasos=argsInt.pollFirst();
+        argsInt.pollFirst();//quito el primero
 
-        if (numeroCasos*2!=argsInt.size()){
-            System.out.println("Número de argumentos introducidos no coincide con el indicado!");
-            return;
+        for (int i=0;i<argsInt.size();i+=2){
+            int numeroPasos=0;
+            try{
+                numeroPasos=argsInt.get(i)/argsInt.get(i+1);
+                if (argsInt.get(i)%argsInt.get(i+1)>0){
+                    ++numeroPasos;
+                }
+            }catch (Exception e){
+                System.out.println("Error al hacer el calculo");
+                continue;
+            }
+            System.out.println(numeroPasos);
         }
     }
 }

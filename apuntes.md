@@ -23,12 +23,26 @@ javadoc:
 ```
 
 ## Compilar
-Mirar compilación normal e con jar
-
+### Con jar
 ejecutar un jar:
-```
+```bash
 java -cp target/BasicBithday-1.0-SNAPSHOT.jar org.example.BirthDayStdIn
 ```
+### Normal
+#### Compilar
+Esto ejecutado dende a raiz do proyecto:
+````bash
+javac -cp [directorioClasesCompiladas] -d [directorioGardado] nomeArchivoACompilar
+javac -cp target/classes/ -d target/classes/ src/main/java/org/example/Pasos.java
+````
+* `-cp` : class path, donde estan as clases compiladas que usa o arquivo que queremos compilar
+* `-d` : onde queremos que se garde o arquivo compilado
+#### Ejecutar
+O mismo que a execución pero indicando o paquete en vez de o directorio do arquivo, seguimos indicando onde estan as clases compiladas que usa
+````bash
+javac -cp target/classes/ -d target/classes/ src/main/java/org/example/Pasos.java
+````
+
 
 ## Tareas en windows
 ### Listar
