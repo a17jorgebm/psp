@@ -67,3 +67,6 @@ taskkill -> mata o proceso
 * /F -> forzao
 * /PID -> para indicar o id
 * /IM -> para indicar o nome
+
+## Procesos en java
+Hai que saber usar os procesos con runtime e con processbuilder.
