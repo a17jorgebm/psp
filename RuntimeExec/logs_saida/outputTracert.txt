@@ -1,0 +1,9 @@
+
+Traza a la direcci¢n iessanclemente.net [172.16.0.238]
+sobre un m ximo de 30 saltos:
+
+  1     2 ms    <1 ms     1 ms  10.26.0.254 
+  2    <1 ms    <1 ms    <1 ms  router.iessanclemente.net [10.0.0.1] 
+  3     1 ms    <1 ms    <1 ms  iessanclemente.net [172.16.0.238] 
+
+Traza completa.
