@@ -17,7 +17,7 @@ public class Deliverer implements Runnable{
     public void run() {
         while (true){
             Pizza pizza=null;
-            int timeToDeliver=random.nextInt(1000,20001);
+            int timeToDeliver=random.nextInt(1000,2000);
 
             try{
                 pizza=tray.getPizzaToDeliver();

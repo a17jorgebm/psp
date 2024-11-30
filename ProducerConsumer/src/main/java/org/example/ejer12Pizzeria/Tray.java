@@ -35,10 +35,11 @@ public class Tray {
     }
 
     synchronized public Pizza getPizzaToDeliver() throws InterruptedException{
+        if (stopDelivering.get()) return null;
+
         while (tray.isEmpty()){
             wait();
         }
-        if (stopDelivering.get()) return null;
 
         Pizza pizza= tray.removeFirst();
         if (stopCooking.get() && tray.isEmpty()){
