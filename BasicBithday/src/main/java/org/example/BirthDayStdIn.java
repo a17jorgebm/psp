@@ -3,6 +3,10 @@ package org.example;
 import java.util.Scanner;
 
 public class BirthDayStdIn {
+    /**
+     * Devolve o numero de velas encendidas en binario
+     * @param args number of cases and cases
+     */
     public static void main(String[] args) {
         System.out.print("Cuantos casos vas a hacer: ");
         Scanner ler=new Scanner(System.in);

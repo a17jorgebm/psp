@@ -40,7 +40,7 @@ javac -cp target/classes/ -d target/classes/ src/main/java/org/example/Pasos.jav
 #### Ejecutar
 O mismo que a execución pero indicando o paquete en vez de o directorio do arquivo, seguimos indicando onde estan as clases compiladas que usa
 ````bash
-javac -cp target/classes/ -d target/classes/ src/main/java/org/example/Pasos.java
+javac -cp target/classes/ org.example.Pasos
 ````
 
 
