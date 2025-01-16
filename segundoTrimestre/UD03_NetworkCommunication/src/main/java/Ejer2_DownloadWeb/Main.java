@@ -1,6 +1,6 @@
 package Ejer2_DownloadWeb;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -20,8 +20,8 @@ import java.util.Scanner;
  */
 
 public class Main {
-    private static final String API_URL="https://api.slingacademy.com/v1/sample-data/blog-posts/[id]";
-    
+    private static final String API_URL="https://api.slingacademy.com/v1/sample-data/blog-posts/%[id]";
+
     public static void main(String[] args) {
         System.out.print("Insert the id of the blog to download: ");
         Scanner scanner = new Scanner(System.in);
@@ -29,22 +29,30 @@ public class Main {
             System.out.println("Bad input... say a number next time");
             System.exit(1);
         }
-        int id=scanner.nextInt();
+        String id=scanner.nextLine();
+        String url=API_URL.replace("%[id]",id);
 
-
-
+        URLConnection urlConnection=null;
         try{
+            urlConnection=new URI(url).toURL().openConnection();
+
+
+        }catch (Exception e){
 
         }
-        try{
-            URLConnection urlConnection=new URI("").toURL().openConnection();
 
-
-        }catch (URISyntaxException | MalformedURLException e){
-
+        try(
+                BufferedReader bufferedInputStream = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                StringWriter stringWriter = new StringWriter();
+                ){
+            String line;
+            while((line= bufferedInputStream.readLine())!=null){
+                stringWriter.write(line);
+            }
         }catch (IOException e){
 
         }
+
 
     }
 }
