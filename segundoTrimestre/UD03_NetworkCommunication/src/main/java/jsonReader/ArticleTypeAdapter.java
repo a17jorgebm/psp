@@ -7,6 +7,7 @@ import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ArticleTypeAdapter extends TypeAdapter<Article> {
     @Override
@@ -24,8 +25,12 @@ public class ArticleTypeAdapter extends TypeAdapter<Article> {
                     break;
                 case "blog":
                     article = readArticle(jsonReader);
+                    break;
+                default:
+                    jsonReader.skipValue();
             }
         }
+        return null;
     }
 
     private Article readArticle(JsonReader jsonReader) throws IOException{
@@ -39,7 +44,10 @@ public class ArticleTypeAdapter extends TypeAdapter<Article> {
         return null;
     }
 
-    private LocalDateTime readDate(){
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss.SSSS");
 
+    private LocalDateTime readDate(JsonReader jsonReader) throws IOException{
+        String data = jsonReader.nextString().replace('T',' ');
+        return LocalDateTime.parse(data,dateTimeFormatter);
     }
 }
