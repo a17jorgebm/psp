@@ -32,7 +32,7 @@ public class ArticleTypeAdapter extends TypeAdapter<Article> {
         jsonReader.beginObject();
         while (jsonReader.hasNext()){
             switch (jsonReader.nextName()){
-                
+
             }
         }
         jsonReader.endObject();
