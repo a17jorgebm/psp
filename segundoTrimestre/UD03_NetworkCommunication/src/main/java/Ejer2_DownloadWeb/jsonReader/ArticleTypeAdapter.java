@@ -1,4 +1,4 @@
-package jsonReader;
+package Ejer2_DownloadWeb.jsonReader;
 
 import Ejer2_DownloadWeb.Article;
 import com.google.gson.TypeAdapter;
@@ -18,6 +18,8 @@ public class ArticleTypeAdapter extends TypeAdapter<Article> {
     @Override
     public Article read(JsonReader jsonReader) throws IOException {
         Article article = new Article();
+
+        jsonReader.beginObject();
         while (jsonReader.hasNext()){
             switch (jsonReader.nextName()){
                 case "success":
@@ -30,21 +32,33 @@ public class ArticleTypeAdapter extends TypeAdapter<Article> {
                     jsonReader.skipValue();
             }
         }
-        return null;
+        jsonReader.endObject();
+        return article;
     }
 
     private Article readArticle(JsonReader jsonReader) throws IOException{
+        Article article=new Article();
         jsonReader.beginObject();
         while (jsonReader.hasNext()){
             switch (jsonReader.nextName()){
-
+                case "content_text" -> article.setContentText(jsonReader.nextString());
+                case "user_id" -> article.setUserId(jsonReader.nextInt());
+                case "title" -> article.setTitle(jsonReader.nextString());
+                case "photo_url" -> article.setPhotoUrl(jsonReader.nextString());
+                case "created_at" -> article.setCreatedAt(readDate(jsonReader));
+                case "id" -> article.setId(jsonReader.nextInt());
+                case "description" -> article.setDescription(jsonReader.nextString());
+                case "content_html" -> article.setContentHtml(jsonReader.nextString());
+                case "category" -> article.setCategory(jsonReader.nextString());
+                case "updated_at" -> article.setUpdatedAt(readDate(jsonReader));
+                default -> jsonReader.skipValue();
             }
         }
         jsonReader.endObject();
-        return null;
+        return article;
     }
 
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss.SSSS");
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS");
 
     private LocalDateTime readDate(JsonReader jsonReader) throws IOException{
         String data = jsonReader.nextString().replace('T',' ');

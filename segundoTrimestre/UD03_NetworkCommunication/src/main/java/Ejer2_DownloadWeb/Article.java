@@ -29,6 +29,22 @@ public class Article{
         this.contentText = contentText;
     }
 
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", contentText='" + contentText + '\'' +
+                ", userId=" + userId +
+                ", title='" + title + '\'' +
+                ", photoUrl='" + photoUrl + '\'' +
+                ", createdAt=" + createdAt +
+                ", description='" + description + '\'' +
+                ", contentHtml='" + contentHtml + '\'' +
+                ", category='" + category + '\'' +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }
