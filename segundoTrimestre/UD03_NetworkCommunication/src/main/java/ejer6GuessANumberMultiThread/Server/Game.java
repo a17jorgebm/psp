@@ -9,18 +9,38 @@ public class Game {
 
     private int attemptsLeft;
     private int numberToGuess;
+    private boolean gameEnded;
+    private boolean userWon;
 
     public Game(int attemptsLeft) {
         this.attemptsLeft=attemptsLeft;
         numberToGuess=random.nextInt(MIN_NUMBER_IN_RANGE,MAX_NUMBER_IN_RANGE+1);
+        gameEnded=false;
+        userWon=false;
     }
 
     public boolean guessNumber(int number){
+        //good guess
         if (number==numberToGuess){
+            gameEnded=true;
+            userWon=true;
             return true;
         }
+
+        //bad guess
         --attemptsLeft;
+        if (attemptsLeft == 0){ //game ended
+            gameEnded=true;
+        }
         return false;
+    }
+
+    public boolean gameHasEnded(){
+        return gameEnded;
+    }
+
+    public boolean userWon(){
+        return userWon;
     }
 
     public int getAttemptsLeft() {
