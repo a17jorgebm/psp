@@ -1,0 +1,6 @@
+cuenta de correo en base 64: YmFzdXJlcm9kZWJqQGdtYWlsLmNvbQ==
+cuenta de correo: basurerodebj@gmail.com
+
+Nome aplicacion: pspSMTP
+Contraseña aplicacion para dispositivo: ldkd imxi yatm vjjn
+Contraseña aplicacion en base 64: bGRrZCBpbXhpIHlhdG0gdmpqbg==
