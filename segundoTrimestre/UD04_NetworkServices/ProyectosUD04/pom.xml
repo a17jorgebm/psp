@@ -15,6 +15,7 @@
     </properties>
 
     <dependencies>
+        <!-- para mail -->
         <dependency>
             <groupId>org.eclipse.angus</groupId>
             <artifactId>angus-mail</artifactId>
