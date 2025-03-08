@@ -43,7 +43,7 @@ import java.util.concurrent.Executors;
  * 90 UNKNOWN. The command used by the client is incorrect.
  */
 public class Server {
-    private static final Path CONFIGURATION_FILE = Paths.get("src/main/java/ejer6GuessANumberMultiThread/config.properties");
+    private static final Path CONFIGURATION_FILE = Paths.get("src/main/java/config.properties");
     private static final int LISTEN_PORT = 60000;
     private static final int MAX_PARALLEL_CLIENTS = 100;
     private static final int NUMBER_OF_THREADS = Runtime.getRuntime().availableProcessors();
