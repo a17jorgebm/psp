@@ -6,6 +6,7 @@ import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
+import java.util.Scanner;
 
 public class Client {
     private static final Path CONFIGURATION_FILE = Paths.get("src/main/java/ejer6GuessANumberMultiThread/config.properties");
@@ -17,17 +18,23 @@ public class Client {
         System.setProperty("javax.net.ssl.trustStore",properties.getProperty("publicKeyFilePath"));
         System.setProperty("javax.net.ssl.trustStorePassword",properties.getProperty("publicKeyPassword"));
 
-        SSLSocketFactory socketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
+        SSLSocketFactory sslSocketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
         try(
-                SSLSocket sslSocket = (SSLSocket) socketFactory.createSocket(HOST_NAME,PORT);
+                SSLSocket sslSocket = (SSLSocket) sslSocketFactory.createSocket(HOST_NAME,PORT);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(sslSocket.getInputStream()));
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(sslSocket.getOutputStream()))
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(sslSocket.getOutputStream()));
+                Scanner userInput = new Scanner(System.in);
                 ){
-            /* mirar ben como facer o tema de que se quede escuitando o reader e que poda escribir cando faga falta */
-            System.out.println(reader.readLine());
+            while(true){
+
+            }
         }catch (IOException e){
-            System.out.println(e.getMessage());
+
         }
+    }
+
+    private String readServerMessage(BufferedReader server){
+        return null;
     }
 
     private static Properties loadProperties(){
