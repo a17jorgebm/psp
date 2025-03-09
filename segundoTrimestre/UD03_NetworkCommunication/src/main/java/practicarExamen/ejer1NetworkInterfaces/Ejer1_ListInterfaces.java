@@ -1,14 +1,15 @@
-# 3. Network communication
+package practicarExamen.ejer1NetworkInterfaces;
 
-## Network Interfaces
-Traballaremos cas clases:
-- `NetworkInterface`: representar e traballar coa interfaz de red (unha tarjeta de red por ejemplo: enp0s8)
-  - `InterfaceAddress`: representar e traballar coa subred(ip (mediante InetAddress), prefijo subred, broadcast...)
-  - `InetAddress`: traballar mais especificamente coa ip e os seus datos (ip, host name, isReachable...)
 
-No caso de solo necesitar as **Ip**, usamos directamente `InetAddress`, pero no caso de necesitar saber **información sobre a subred**, como a mascara de subred ou a dirección de broadcast, usaremos `InterfaceAddress`.
+import java.net.*;
+import java.util.ArrayList;
+import java.util.Enumeration;
 
-````java
+/**
+ * DU3 - Exercise 1 - Network interfaces
+ *
+ * Create a program in Java to list all the network interfaces and their IP addresses on your computer. Use the class Java.net.NetworkInterface.
+ */
 public class Ejer1_ListInterfaces {
     public static void main(String[] args) {
         try {
@@ -39,34 +40,3 @@ public class Ejer1_ListInterfaces {
         }
     }
 }
-````
-
-## URL
-Coas clases `URI`, `URL` e `URLConnection` xa temos o necesario para facer unha conexion a un stream de datos de calquer pagina.
-
-A partir da URI sacamos a URL e da url sacamos a conexion
-
-````java
-URLConnection urlConnection = null;
-        try{
-            urlConnection = new URI(URL_DIRECTION).toURL().openConnection();
-        }catch (URISyntaxException | MalformedURLException e){
-            System.out.println("La url tiene un mal formato");
-        }catch (IOException e){
-            System.out.println("No se ha podido establecer conexion con la URL");
-        }
-
-        try(
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                ){
-            String line;
-            while ((line=bufferedReader.readLine()) != null){
-                System.out.println(line);
-            }
-        }catch (IOException e){
-            System.out.println("Error lendo o json");
-        }
-````
-
-## Sockets
-
