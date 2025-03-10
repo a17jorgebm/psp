@@ -49,7 +49,7 @@ import java.util.concurrent.Executors;
  */
 
 public class FundraisingServerTCP {
-    private static final Path CONFIG_FILE = Path.of("src/main/java/config.properties");
+    private static final Path CONFIG_FILE = Path.of("src/main/java/server.config.properties");
     private static final int LISTENING_PORT = 61000;
     private static final int MAX_PARARELL_CLIENTS = 100;
     private static final int NUMBER_OF_THREADS = Runtime.getRuntime().availableProcessors();

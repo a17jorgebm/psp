@@ -1,4 +1,7 @@
-package practicarExamen.ejer6GuessANumber;
+package practicarExamen.ejer6ConSSLGuessANumber;
+
+import practicarExamen.ejer6GuessANumber.Command;
+import practicarExamen.ejer6GuessANumber.Game;
 
 import java.io.*;
 import java.net.Socket;
@@ -22,7 +25,7 @@ public class ClientHandler implements Runnable{
             Map.entry(90, "90 UNKNOWN")
     ));
 
-    private Game game;
+    private practicarExamen.ejer6GuessANumber.Game game;
     private final Socket requestSocket;
 
     public ClientHandler(Socket requestSocket) {
@@ -38,7 +41,7 @@ public class ClientHandler implements Runnable{
             writeResponse(socketOutput, RESPONSE_CODES.get(10)); //servidor listo
             loop: while (true){
                 String[] separatedCommand = getSeparatedCommand(readResponse(bufferedReader));
-                Command comand = Command.getCommandFromText(separatedCommand[0]);
+                practicarExamen.ejer6GuessANumber.Command comand = practicarExamen.ejer6GuessANumber.Command.getCommandFromText(separatedCommand[0]);
                 switch (comand){
                     case NEW -> {
                         try{
@@ -83,7 +86,7 @@ public class ClientHandler implements Runnable{
                         }
                     }
                     case HELP -> {
-                        writeResponse(socketOutput,Command.getCommandHelpText());
+                        writeResponse(socketOutput, Command.getCommandHelpText());
                     }
                     case QUIT -> {
                         writeResponse(socketOutput, RESPONSE_CODES.get(11));

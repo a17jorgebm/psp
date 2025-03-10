@@ -69,4 +69,44 @@ URLConnection urlConnection = null;
 ````
 
 ## Sockets
+### Sin claves (non seguro)
+Usaremos `Socket` para escribir entre cliente e servidor, e `ServerSocket` para escuitar no servidor por peticions, das cales sacaremos o `Socket` de cada unha.
 
+### Con claves
+Para generar as claves usamos `keytool`, e para eso hai q abrir a terminal en `C:\Program Files\Java\jdk-21\bin`.
+
+````shell
+keytool -genkey -keyalg RSA -alias server -keystore ServerKeys.jks -storepass 12345678 #clave privada
+keytool -exportcert -alias server -file server.cer -keystore ServerKeys.jks #certificado
+keytool -importcert -trustcacerts -alias server -file server.cer -keystore ClientKeys.jks -storepass 87654321 #clave publica
+````
+
+Despois para usalas no programa hai que metelas nas propiedades da JVM, lendo os datos desde un ficheiro coa clase Properties.\
+Servidor:
+````
+javax.net.ssl.keyStore=src/main/java/practicarExamen/ejer6ConSSLGuessANumber/sslKeys/ServerKeys.jks
+javax.net.ssl.keyStorePassword=12345678
+````
+Cliente:
+````
+javax.net.ssl.trustStore=src/main/java/practicarExamen/ejer6ConSSLGuessANumber/sslKeys/ClientKeys.jks
+javax.net.ssl.trustStorePassword=87654321
+````
+No Programa:
+````java
+private static Properties readProperties() throws IOException{
+    try(FileInputStream fileInputStream = new FileInputStream(Path.of("src/main/java/practicarExamen/ejer6ConSSLGuessANumber/server.config.properties").toFile())){
+        Properties properties = new Properties();
+        properties.load(fileInputStream);
+        return properties;
+    }
+}
+
+//ahora hai que meter as propiedades na JVM con System.setProperty
+try{
+  readProperties().forEach((key, value)->System.setProperty(key.toString(),value.toString()));
+}catch (IOException e){
+  System.out.println(e.getMessage());
+  System.exit(1);
+}
+````

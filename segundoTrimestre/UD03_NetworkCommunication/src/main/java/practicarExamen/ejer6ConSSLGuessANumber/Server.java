@@ -1,12 +1,16 @@
-package ejer6GuessANumberMultiThread.Server;
+package practicarExamen.ejer6ConSSLGuessANumber;
+
+import practicarExamen.ejer6GuessANumber.ClientHandler;
 
 import javax.net.ssl.SSLServerSocket;
 import javax.net.ssl.SSLServerSocketFactory;
 import javax.net.ssl.SSLSocket;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -42,48 +46,45 @@ import java.util.concurrent.Executors;
  * 80 ERR. The command used by the client cannot be used at this time.
  * 90 UNKNOWN. The command used by the client is incorrect.
  */
+
 public class Server {
-    private static final Path CONFIGURATION_FILE = Paths.get("src/main/java/server.config.properties");
-    private static final int LISTEN_PORT = 60000;
-    private static final int MAX_PARALLEL_CLIENTS = 100;
-    private static final int NUMBER_OF_THREADS = Runtime.getRuntime().availableProcessors();
+    private static final Integer LISTENING_PORT = 50000;
+    private static final Integer MAX_PETITIONS = 20;
+    private static final Integer MAX_THREADS = Runtime.getRuntime().availableProcessors() > 1 ? Runtime.getRuntime().availableProcessors()/2 : 1;
 
     public static void main(String[] args) {
         //load the properties
-        Properties properties = loadProperties();
-        System.setProperty("javax.net.ssl.keyStore",properties.getProperty("privateKeyFilePath"));
-        System.setProperty("javax.net.ssl.keyStorePassword",properties.getProperty("privateKeyPassword"));
+        try{
+            readProperties().forEach((key, value)->System.setProperty(key.toString(),value.toString()));
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
 
-        //initiate the server
         SSLServerSocketFactory sslServerSocketFactory = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
         try(
-                SSLServerSocket sslServerSocket = (SSLServerSocket) sslServerSocketFactory.createServerSocket(LISTEN_PORT,MAX_PARALLEL_CLIENTS);
-                ExecutorService threadPool = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
-        ){
-            System.out.println("Server initiaded, listening to petitions in port "+LISTEN_PORT+" working with "+NUMBER_OF_THREADS+" threads. Max number of parallel clients: "+MAX_PARALLEL_CLIENTS);
-            //listen to petitions, new thread in the threadPool for each one
+                SSLServerSocket sslServerSocket = (SSLServerSocket) sslServerSocketFactory.createServerSocket(LISTENING_PORT, MAX_PETITIONS);
+                ExecutorService threadPool = Executors.newFixedThreadPool(MAX_THREADS);
+                ){
+            System.out.println(String.format("Server started, listening in port %d with %d threads...",LISTENING_PORT,MAX_THREADS));
             while (true){
                 try{
-                    SSLSocket clientPetition = (SSLSocket) sslServerSocket.accept();
-                    threadPool.execute(new ClientPetitionManager(clientPetition));
+                    SSLSocket requestSocket = (SSLSocket) sslServerSocket.accept();
+                    threadPool.execute(new ClientHandler(requestSocket));
                 }catch (IOException e){
-                    System.out.println("Error in petition");
+                    System.out.println(LocalDateTime.now()+" Couldnt serve petition: "+ e.getMessage());
                 }
             }
         }catch (IOException e){
-            System.out.println("Error initiating the server: "+e.getMessage());
+            System.out.println("Error initiating server: "+e.getMessage());
         }
     }
 
-    private static Properties loadProperties(){
-        Properties properties = new Properties();
-        try(FileInputStream fileInputStream = new FileInputStream(CONFIGURATION_FILE.toFile())){
+    private static Properties readProperties() throws IOException{
+        try(FileInputStream fileInputStream = new FileInputStream(Path.of("src/main/java/practicarExamen/ejer6ConSSLGuessANumber/server.config.properties").toFile())){
+            Properties properties = new Properties();
             properties.load(fileInputStream);
             return properties;
-        }catch (IOException e){
-            System.out.println("No ha sido posible cargar el fichero de configuración: "+ e.getMessage());
-            System.exit(1);
-            return null;
         }
     }
 }

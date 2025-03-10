@@ -1,9 +1,12 @@
 package practicarExamen.ejer6GuessANumber;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -49,6 +52,7 @@ public class Server {
                 ServerSocket serverSocket = new ServerSocket(LISTENING_PORT, MAX_PETITIONS);
                 ExecutorService threadPool = Executors.newFixedThreadPool(MAX_THREADS);
                 ){
+            System.setProperties(readProperties());
             System.out.println(String.format("Server started, listening in port %d with %d threads...",LISTENING_PORT,MAX_THREADS));
             while (true){
                 try{
@@ -60,6 +64,14 @@ public class Server {
             }
         }catch (IOException e){
             System.out.println("Error initiating server: "+e.getMessage());
+        }
+    }
+
+    private static Properties readProperties() throws IOException{
+        try(FileInputStream fileInputStream = new FileInputStream(Path.of("src/main/java/practicarExamen/ejer6GuessANumber/server.config.properties").toFile())){
+            Properties properties = new Properties();
+            properties.load(fileInputStream);
+            return properties;
         }
     }
 }

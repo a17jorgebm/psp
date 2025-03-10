@@ -9,7 +9,7 @@ import java.util.Properties;
 import java.util.Scanner;
 
 public class Client {
-    private static final Path CONFIGURATION_FILE = Paths.get("src/main/java/ejer6GuessANumberMultiThread/config.properties");
+    private static final Path CONFIGURATION_FILE = Paths.get("src/main/java/ejer6GuessANumberMultiThread/server.config.properties");
     private static final int PORT= 60000;
     private static final String HOST_NAME = "localhost";
 

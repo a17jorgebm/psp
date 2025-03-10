@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.util.Properties;
 
 public class FundraisingClientTCP {
-    private static final Path CONFIG_FILE = Path.of("src/main/java/config.properties");
+    private static final Path CONFIG_FILE = Path.of("src/main/java/server.config.properties");
     private static final String HOST_NAME = "localhost";
     private static final int PETITION_PORT = 61000;
 
