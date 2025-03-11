@@ -12,13 +12,13 @@ import java.nio.file.Paths;
 import java.util.Properties;
 
 public class SendEmailWithMiniRelay {
-    private static final Path CONFIGURATION_FILE = Paths.get("properties.config");
+    private static final Path CONFIGURATION_FILE = Paths.get("config.properties");
 
     public static void main(String[] args) {
         Properties properties = loadProperties();
 
         String sender = "basurerodebj@gmail.com";
-        String receiver="alt.xw-15w5gb0@yopmail.com";
+        String receiver="alt.c4-6om1r70w@yopmail.com";
         Session session = Session.getInstance(properties);
         try {
             Message message = new MimeMessage(session);

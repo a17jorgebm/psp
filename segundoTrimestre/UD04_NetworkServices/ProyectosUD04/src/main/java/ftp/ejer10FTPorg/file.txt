@@ -1,0 +1,60 @@
+ Note: The uploading process is being changed 
+ 
+ /incoming       For new uploads for existing directories on the server
+ /incoming/apply For applications for new directories / space on the server
+
+
+
+ --- IF YOU ARE A PARTY ORGANIZER ---
+
+ Please, please, PLEASE!
+
+ Read the uploading rules at https://files.scene.org/faq/#uploading
+
+ Here's a short version:
+ - Go to /incoming/parties/[partyyear]/ (if the year directory
+   doesn't exist, create it.)
+ - Create a directory for your party as such: <party-name><party-year>:
+   MYPARTY03 for example.
+ - Create a subdirectory for each competition and upload the archives
+   in their respective dirs.
+
+ Tips:
+ - Sanitize your filenames. To avoid encoding issues, filenames should
+   consist of lowercase alphanumeric characters and underscores only.
+   Remove all spaces or accented characters.
+ - Prefer ZIP over RAR.
+ - Please, do NOT upload entries unpacked if they consist of several
+   files. One entry should always be one single file.
+
+
+
+ --- OTHER UPLOADS ---
+
+ You can upload your productions normally. If your name/your group's name is
+ not stated clearly somewhere in the file (i.e. it's not there or it is 
+ printed using the msdos line drawing characters), include something that 
+ tells it. Otherwise your upload will be deleted.
+
+ If you are uploading on behalf of someone who already has a directory,
+ please go ahead and upload to /incoming.
+
+ If you are having trouble uploading stuff due to 275 max clients
+ limit use 'upload' as your login and your email as your password to upload
+ only.
+
+ Warez, no matter how eleet, will die a horrible, painful and slow death.
+
+ Thanks for your time and patience.  We built this site for YOU and we hope
+ you like it.  If you have any problems or suggestions, feel free to mail
+ ftp@scene.org!
+
+
+
+ --- LAST WORDS ---
+
+ Please, PLEASE include a separate .txt file with your uploads so that we
+ can check in which dir we're supposed to move your upload. It makes our
+ job a *lot* easier when we don't have to unzip every damn file... If this
+ is too much trouble at least add a file_id.diz or a <filename>.txt file
+ in the upload.

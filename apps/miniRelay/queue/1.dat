@@ -1,0 +1,39 @@
+## miniRelay Server Mail File (Type 1.01) ##
+1
+a17jorgebm@iessanclemente.net
+Error
+X-Mailer: miniRelay v0.9.77d
+From: a17jorgebm@iessanclemente.net
+Subject: Error en el Sistema de Correo - Correo Devuelto
+To: a17jorgebm@iessanclemente.net
+Content-Type: multipart/mixed; boundary="=_NextPart_2rfkindysadvnqw3nerasdf"
+MIME-Version: 1.0
+Sender: a17jorgebm@iessanclemente.net
+Date: Mon, 10 Mar 2025 15:39:08 +0100
+
+This is a multi-part message in MIME format
+
+--=_NextPart_2rfkindysadvnqw3nerasdf
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+
+No se ha podido mandar el mensaje debido al siguiente problema:
+
+Connect timed out.
+
+
+------------------------miniRelay v0.9.77d
+
+--=_NextPart_2rfkindysadvnqw3nerasdf
+Content-Type: application/octet-stream;
+        name="message.msg"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+        filename="message.msg"
+
+RnJvbTphMTdqb3JnZWJtQGllc3NhbmNsZW1lbnRlLm5ldA0KVG86YWx0LmM0LTZvbTFyNzB3QHlv
+cG1haWwuY29tDQpTdWJqZWN0OlByb2JhbmRvLi4uDQoNCm9sYSBxdWUgdGFsLA0KDQpzb24gam9y
+Z2UgcG8gZXhhbWVuDQo=
+
+--=_NextPart_2rfkindysadvnqw3nerasdf--
+.
